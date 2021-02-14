@@ -15,7 +15,7 @@ case class Table(columnWidths:Seq[Int],hasHeader:Boolean=true,rows:Seq[Row],rowS
       sb.append(columnWidths.map(width=>"="*width).mkString("+")).append(lineEnd)
       sb
     }
-    val styled = rows.drop(if hasHeader then 1 else 0).take(rows.length - 1).foldLeft(StringBuffer("")){(acc,row)=>
+    val styled = rows.drop(if hasHeader then 1 else 0).take(rows.length - 2).foldLeft(StringBuffer("")){(acc,row)=>
       acc.append(row.prettyFormat(columnWidths))
       val rowSep = columnWidths.map(width=> rowSeparator*width).mkString("+")
       acc.append(rowSep).append(lineEnd)
